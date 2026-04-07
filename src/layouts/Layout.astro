@@ -1,0 +1,156 @@
+---
+interface Props {
+  title?: string;
+}
+
+const { title = 'ようこそ！！私のホームページへ☆' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+    <script>
+      // キラキラマウスストーカー
+      // マウスを動かすたびに新しいキラキラが生成されて、ふわっと消える
+      const CHARS = ['★', '☆', '＊', '※', '●', '◆', '♪', '♥'];
+      const COLORS = ['#ffff00', '#ff00ff', '#00ffff', '#ff0000', '#00ff00'];
+      let lastSpawn = 0;
+      const SPAWN_INTERVAL = 30; // ms
+
+      document.addEventListener('mousemove', (e) => {
+        const now = Date.now();
+        if (now - lastSpawn < SPAWN_INTERVAL) return;
+        lastSpawn = now;
+
+        const count = Math.floor(Math.random() * 2) + 1;
+        for (let i = 0; i < count; i++) {
+          spawnSparkle(e.clientX, e.clientY);
+        }
+      });
+
+      function spawnSparkle(x: number, y: number) {
+        const el = document.createElement('div');
+        el.className = 'sparkle';
+        el.textContent = CHARS[Math.floor(Math.random() * CHARS.length)];
+        el.style.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+        el.style.left = `${x + (Math.random() - 0.5) * 20}px`;
+        el.style.top = `${y + (Math.random() - 0.5) * 20}px`;
+        el.style.fontSize = `${Math.random() * 12 + 10}px`;
+
+        // ゆっくり落ちる
+        const dx = (Math.random() - 0.5) * 40;
+        const dy = Math.random() * 30 + 20;
+        el.style.setProperty('--dx', `${dx}px`);
+        el.style.setProperty('--dy', `${dy}px`);
+
+        document.body.appendChild(el);
+
+        el.addEventListener('animationend', () => el.remove());
+      }
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  @import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #00cc00;
+    color: #000000;
+    font-family: 'DotGothic16', 'MS Gothic', 'ＭＳ ゴシック', monospace;
+    cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='22' viewBox='0 0 16 22'><path d='M0 0L0 18L4 14L8 22L11 20L7 13L13 13Z' fill='white' stroke='black' stroke-width='1'/></svg>") 0 0, auto;
+  }
+
+  a {
+    color: #0000ff;
+  }
+
+  a:visited {
+    color: #800080;
+  }
+
+  .sparkle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    animation: sparkle-float 2.5s linear forwards;
+  }
+
+  @keyframes sparkle-float {
+    0% {
+      opacity: 1;
+      transform: translate(0, 0) scale(1);
+    }
+    70% {
+      opacity: 0.8;
+      transform: translate(var(--dx), var(--dy)) scale(0.8);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(var(--dx), calc(var(--dy) + 30px)) scale(0.3);
+    }
+  }
+
+  .marquee {
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .marquee span {
+    display: inline-block;
+    animation: marquee 12s linear infinite;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(100vw);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .blink {
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes rainbow {
+    0% { color: #ff0000; }
+    17% { color: #ff8800; }
+    33% { color: #ffff00; }
+    50% { color: #00ff00; }
+    67% { color: #0088ff; }
+    83% { color: #8800ff; }
+    100% { color: #ff0000; }
+  }
+
+  .rainbow {
+    animation: rainbow 3s linear infinite;
+  }
+</style>

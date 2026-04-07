@@ -1,0 +1,58 @@
+---
+// 2000年代風アクセスカウンタ
+---
+
+<div class="counter-wrapper">
+  <span class="counter-label">あなたは</span>
+  <span class="counter" id="access-counter">
+    <span class="digit">0</span>
+    <span class="digit">0</span>
+    <span class="digit">0</span>
+    <span class="digit">1</span>
+    <span class="digit">2</span>
+    <span class="digit">8</span>
+  </span>
+  <span class="counter-label">人目の訪問者です！</span>
+</div>
+
+<script>
+  const counter = document.getElementById('access-counter');
+  if (counter) {
+    let count = parseInt(localStorage.getItem('visit-count') || '127', 10);
+    count++;
+    localStorage.setItem('visit-count', String(count));
+    const digits = counter.querySelectorAll('.digit');
+    const padded = String(count).padStart(digits.length, '0');
+    digits.forEach((d, i) => {
+      d.textContent = padded[i];
+    });
+  }
+</script>
+
+<style>
+  .counter-wrapper {
+    text-align: center;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+
+  .counter {
+    display: inline-flex;
+    gap: 2px;
+    margin: 0 4px;
+  }
+
+  .digit {
+    display: inline-block;
+    width: 20px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    background: #000;
+    color: #00ff00;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+    border: 1px solid #333;
+  }
+</style>

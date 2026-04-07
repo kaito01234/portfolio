@@ -1,0 +1,23 @@
+---
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+---
+
+<div class="marquee">
+  <span>{text}</span>
+</div>
+
+<style>
+  .marquee {
+    background: #ffff00;
+    color: #ff0000;
+    font-weight: bold;
+    padding: 4px 0;
+    border-top: 2px dashed #ff0000;
+    border-bottom: 2px dashed #ff0000;
+    font-size: 14px;
+  }
+</style>

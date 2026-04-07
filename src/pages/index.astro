@@ -1,0 +1,176 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AccessCounter from '../components/AccessCounter.astro';
+import Marquee from '../components/Marquee.astro';
+import UnderConstruction from '../components/UnderConstruction.astro';
+---
+
+<Layout>
+  <main>
+    <Marquee text="☆★☆ ようこそ私のホームページへ！！ブックマークしてね！！ ☆★☆" />
+
+    <div class="container">
+      <h1 class="rainbow">
+        ようこそ！！私のホームページへ☆
+      </h1>
+
+      <p class="last-updated">Last Update: 2026/04/07</p>
+
+      <AccessCounter />
+
+      <hr class="fancy-hr" />
+
+      <section class="profile">
+        <h2>◆ プロフィール ◆</h2>
+        <table>
+          <tr>
+            <th>なまえ</th>
+            <td>管理人</td>
+          </tr>
+          <tr>
+            <th>しゅみ</th>
+            <td>プログラミング</td>
+          </tr>
+          <tr>
+            <th>ひとこと</th>
+            <td>見てくれてありがとう！！</td>
+          </tr>
+        </table>
+      </section>
+
+      <hr class="fancy-hr" />
+
+      <section>
+        <h2>◆ コンテンツ ◆</h2>
+        <ul class="menu">
+          <li><a href="/netiquette">📖 ネチケットについて</a></li>
+          <li><span class="blink">🔗 リンク集（準備中）</span></li>
+          <li><span class="blink">📝 掲示板（準備中）</span></li>
+        </ul>
+      </section>
+
+      <hr class="fancy-hr" />
+
+      <UnderConstruction />
+
+      <footer>
+        <p>
+          このサイトは<strong>Internet Explorer 6.0</strong>で最適化されています
+        </p>
+        <p>解像度 800x600 推奨</p>
+        <p class="copyright">
+          (C) 2026 管理人 All Rights Reserved.<br />
+          無断転載禁止！！
+        </p>
+      </footer>
+    </div>
+
+    <Marquee text="☆ このサイトはリンクフリーです！バナーは直リンク禁止でお願いします ☆" />
+  </main>
+</Layout>
+
+<style>
+  main {
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 16px;
+    background: #ffffff;
+    border: 3px double #000000;
+    box-shadow: 4px 4px 0 #006600;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 24px;
+    margin: 16px 0;
+  }
+
+  h2 {
+    font-size: 16px;
+    color: #006600;
+    border-bottom: 2px solid #006600;
+    padding-bottom: 4px;
+  }
+
+  .last-updated {
+    text-align: right;
+    font-size: 12px;
+    color: #666;
+  }
+
+  .fancy-hr {
+    border: none;
+    height: 4px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      #ff0000,
+      #ffff00,
+      #00ff00,
+      #0088ff,
+      #8800ff,
+      transparent
+    );
+    margin: 16px 0;
+  }
+
+  .profile table {
+    margin: 0 auto;
+    border-collapse: collapse;
+  }
+
+  .profile th,
+  .profile td {
+    border: 1px solid #999;
+    padding: 4px 16px;
+    font-size: 14px;
+  }
+
+  .profile th {
+    background: #ccffcc;
+    text-align: left;
+  }
+
+  .menu {
+    list-style: none;
+    padding: 0;
+  }
+
+  .menu li {
+    padding: 4px 0;
+    font-size: 14px;
+  }
+
+  .menu li::before {
+    content: '▶ ';
+    color: #00cc00;
+  }
+
+  .menu a {
+    text-decoration: none;
+  }
+
+  .menu a:hover {
+    text-decoration: underline;
+    color: #ff0000;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 11px;
+    color: #666;
+    margin-top: 16px;
+    padding-top: 8px;
+    border-top: 1px dashed #999;
+  }
+
+  .copyright {
+    margin-top: 8px;
+    font-weight: bold;
+    color: #333;
+  }
+</style>

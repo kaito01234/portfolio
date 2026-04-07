@@ -1,0 +1,36 @@
+---
+// 工事中バナー
+---
+
+<div class="construction">
+  <span class="icon">🚧</span>
+  <span>このページは工事中です</span>
+  <span class="icon">🚧</span>
+</div>
+
+<style>
+  .construction {
+    text-align: center;
+    padding: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ff0000;
+    background: repeating-linear-gradient(
+      45deg,
+      #ffcc00,
+      #ffcc00 10px,
+      #000000 10px,
+      #000000 20px
+    );
+    margin: 16px 0;
+  }
+
+  .construction span:not(.icon) {
+    background: #ffcc00;
+    padding: 2px 8px;
+  }
+
+  .icon {
+    font-size: 20px;
+  }
+</style>
