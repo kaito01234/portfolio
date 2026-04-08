@@ -1,30 +1,38 @@
----
-// 2000年代風アクセスカウンタ
----
-
 <div class="counter-wrapper">
   <span class="counter-label">あなたは</span>
   <span class="counter" id="access-counter">
     <span class="digit">0</span>
     <span class="digit">0</span>
     <span class="digit">0</span>
-    <span class="digit">1</span>
-    <span class="digit">2</span>
-    <span class="digit">8</span>
+    <span class="digit">0</span>
+    <span class="digit">0</span>
+    <span class="digit">0</span>
   </span>
   <span class="counter-label">人目の訪問者です！</span>
 </div>
 
 <script>
-  const counter = document.getElementById('access-counter');
-  if (counter) {
-    let count = parseInt(localStorage.getItem('visit-count') || '127', 10);
-    count++;
-    localStorage.setItem('visit-count', String(count));
-    const digits = counter.querySelectorAll('.digit');
-    const padded = String(count).padStart(digits.length, '0');
+  import { Counter } from 'counterapi';
+
+  const counter = new Counter({
+    workspace: 'kaito01234-portfolio',
+    debug: true,
+  });
+
+  const counterEl = document.getElementById('access-counter');
+
+  if (counterEl) {
+    const digits = counterEl.querySelectorAll('.digit');
+    let text: string;
+    try {
+      const result = await counter.up('visits-counter');
+      const count = (result as any).data.up_count as number;
+      text = String(count).padStart(digits.length, '0');
+    } catch {
+      text = 'ERROR!';
+    }
     digits.forEach((d, i) => {
-      d.textContent = padded[i];
+      d.textContent = text[i] ?? '';
     });
   }
 </script>

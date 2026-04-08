@@ -7,11 +7,11 @@ import UnderConstruction from '../components/UnderConstruction.astro';
 
 <Layout>
   <main>
-    <Marquee text="☆★☆ ようこそ私のホームページへ！！ブックマークしてね！！ ☆★☆" />
+    <Marquee text="☆★☆ ようこそ私のポートフォリオへ！！ブックマークしてね！！ ☆★☆" />
 
     <div class="container">
       <h1 class="rainbow">
-        ようこそ！！私のホームページへ☆
+        ようこそ！！私のポートフォリオへ☆
       </h1>
 
       <p class="last-updated">Last Update: 2026/04/07</p>
@@ -25,7 +25,7 @@ import UnderConstruction from '../components/UnderConstruction.astro';
         <table>
           <tr>
             <th>なまえ</th>
-            <td>管理人</td>
+            <td>kaito01234</td>
           </tr>
           <tr>
             <th>しゅみ</th>
@@ -41,9 +41,24 @@ import UnderConstruction from '../components/UnderConstruction.astro';
       <hr class="fancy-hr" />
 
       <section>
+        <h2>◆ ネチケット講座 ◆</h2>
+        <ul class="netiquette-list">
+          <li>
+            <strong>ネットに投稿したものは一生消えない</strong>
+            <p>「24時間で消えるから」と気軽に投稿していませんか？
+              ストーリーズやBeRealなど、一定時間で消える投稿でも、誰かにスクショされたら一生残ります。
+              社員証や社内資料、会社の中で撮った写真など、仕事に関わるものは絶対に投稿しないこと！
+              「友達しか見てないから大丈夫」と思っても、保存されて拡散されたらもう取り返しがつきません。
+              複数のSNSの情報を組み合わせて個人を特定する手法もあるので、油断は禁物！！</p>
+          </li>
+        </ul>
+      </section>
+
+      <hr class="fancy-hr" />
+
+      <section>
         <h2>◆ コンテンツ ◆</h2>
         <ul class="menu">
-          <li><a href="/netiquette">📖 ネチケットについて</a></li>
           <li><span class="blink">🔗 リンク集（準備中）</span></li>
           <li><span class="blink">📝 掲示板（準備中）</span></li>
         </ul>
@@ -54,12 +69,9 @@ import UnderConstruction from '../components/UnderConstruction.astro';
       <UnderConstruction />
 
       <footer>
-        <p>
-          このサイトは<strong>Internet Explorer 6.0</strong>で最適化されています
-        </p>
         <p>解像度 800x600 推奨</p>
         <p class="copyright">
-          (C) 2026 管理人 All Rights Reserved.<br />
+          (C) 2026 kaito01234 All Rights Reserved.<br />
           無断転載禁止！！
         </p>
       </footer>
@@ -172,5 +184,31 @@ import UnderConstruction from '../components/UnderConstruction.astro';
     margin-top: 8px;
     font-weight: bold;
     color: #333;
+  }
+
+  .netiquette-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .netiquette-list li {
+    margin-bottom: 16px;
+    padding: 8px;
+    background: #f0fff0;
+    border-left: 4px solid #00cc00;
+  }
+
+  .netiquette-list li strong {
+    color: #cc0000;
+    font-size: 15px;
+  }
+
+  .netiquette-list li p {
+    margin: 4px 0 0;
+    font-size: 13px;
+  }
+
+  .reference {
+    font-size: 12px;
   }
 </style>
